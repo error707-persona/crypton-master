@@ -13,7 +13,7 @@ const Exchanges = () => {
   const { data, isFetching } = useGetExchangesQuery();
   const exchangesList = data?.data?.exchanges;
 
-  console.log(exchangesList[0]);
+  
 
   return isFetching ? (
     <Loader />
@@ -59,7 +59,7 @@ const Exchanges = () => {
               </Row>
             }
           >
-            {HTMLReactParser(exchange.description || "Data Bit Found")}
+            {HTMLReactParser(exchange.description || "Data Not Found")}
           </Panel>
         ))}
       </Collapse>
