@@ -1,21 +1,26 @@
-import React from 'react';
-import millify from 'millify';
-import { Collapse, Row, Col, Typography, Avatar, Space } from 'antd';
-import HTMLReactParser from 'html-react-parser';
+import React from "react";
+import millify from "millify";
+import { Collapse, Row, Col, Typography, Avatar, Space } from "antd";
+import HTMLReactParser from "html-react-parser";
 
-import { useGetExchangesQuery } from '../services/cryptoApi';
-import Loader from './Loader';
+import { useGetExchangesQuery } from "../services/cryptoApi";
+import Loader from "./Loader";
 
-const { Text } = Typography;
+const { Text, Title } = Typography;
 const { Panel } = Collapse;
 
 const Exchanges = () => {
   const { data, isFetching } = useGetExchangesQuery();
   const exchangesList = data?.data?.exchanges;
 
-  if (isFetching) return <Loader/>;
-
-  return (
+  return isFetching ? (
+    <Loader />
+  ) : !exchangesList ? (
+    <>
+      <Title>Couldn't load Crypto Exchanges</Title>
+      Please check your internet connection
+    </>
+  ) : (
     <>
       <Row>
         <Col span={6}>Exchanges</Col>
@@ -30,22 +35,31 @@ const Exchanges = () => {
               <Panel
                 key={exchange.id}
                 showArrow={false}
-                header={(
+                header={
                   <Row key={exchange.id}>
                     <Col span={6}>
-                      <Text><strong>{exchange.rank}.</strong></Text>
-                      <Avatar className="exchange-image" src={exchange.iconUrl} maxWidth="20px" maxHeight="20px"/>
-                      <Text><strong>{exchange.name}</strong></Text>
+                      <Text>
+                        <strong>{exchange.rank}.</strong>
+                      </Text>
+                      <Avatar
+                        className="exchange-image"
+                        src={exchange.iconUrl}
+                        maxWidth="20px"
+                        maxHeight="20px"
+                      />
+                      <Text>
+                        <strong>{exchange.name}</strong>
+                      </Text>
                     </Col>
-                    <Space/>
+                    <Space />
                     <Col span={6}>${millify(exchange.volume)}</Col>
-                    <Space/>
+                    <Space />
                     <Col span={6}>{millify(exchange.numberOfMarkets)}</Col>
                     <Col span={6}>{millify(exchange.marketShare)}%</Col>
                   </Row>
-                  )}
+                }
               >
-                {HTMLReactParser(exchange.description || 'Data Not found')}
+                {HTMLReactParser(exchange.description || "Data Not found")}
               </Panel>
             </Collapse>
           </Col>
