@@ -22,49 +22,45 @@ const Exchanges = () => {
     </>
   ) : (
     <>
-      <Row>
-        <Col span={6}>Exchanges</Col>
+      <Row style={{ padding: "0.5rem 1rem", fontWeight:800 }}>
+        <Col span={12}>Exchanges</Col>
         <Col span={6}>24h Trade Volume</Col>
-        <Col span={6}>Markets</Col>
-        <Col span={6}>Change</Col>
+        <Col span={3}>Markets</Col>
+        <Col span={3}>Change</Col>
       </Row>
-      <Row>
+      <Collapse>
         {exchangesList.map((exchange) => (
-          <Col span={24}>
-            <Collapse>
-              <Panel
-                key={exchange.id}
-                showArrow={false}
-                header={
-                  <Row key={exchange.id}>
-                    <Col span={6}>
-                      <Text>
-                        <strong>{exchange.rank}.</strong>
-                      </Text>
-                      <Avatar
-                        className="exchange-image"
-                        src={exchange.iconUrl}
-                        maxWidth="20px"
-                        maxHeight="20px"
-                      />
-                      <Text>
-                        <strong>{exchange.name}</strong>
-                      </Text>
-                    </Col>
-                    <Space />
-                    <Col span={6}>${millify(exchange.volume)}</Col>
-                    <Space />
-                    <Col span={6}>{millify(exchange.numberOfMarkets)}</Col>
-                    <Col span={6}>{millify(exchange.marketShare)}%</Col>
-                  </Row>
-                }
-              >
-                {HTMLReactParser(exchange.description || "Data Not found")}
-              </Panel>
-            </Collapse>
-          </Col>
+          <Panel
+            key={exchange.id}
+            showArrow={false}
+            header={
+              <Row style={{ width: "100%" }}>
+                <Col span={12}>
+                  <Text>
+                    <strong>{exchange.rank}.</strong>
+                  </Text>
+                  <Avatar
+                    className="exchange-image"
+                    src={exchange.iconUrl}
+                    maxWidth="20px"
+                    maxHeight="20px"
+                  />
+                  <Text>
+                    <strong>{exchange.name}</strong>
+                  </Text>
+                </Col>
+                <Space />
+                <Col span={6}>${millify(exchange.volume)}</Col>
+                <Space />
+                <Col span={3}>{millify(exchange.numberOfMarkets)}</Col>
+                <Col span={3}>{millify(exchange.marketShare)}%</Col>
+              </Row>
+            }
+          >
+            {HTMLReactParser(exchange.description || "Data Bit Found")}
+          </Panel>
         ))}
-      </Row>
+      </Collapse>
     </>
   );
 };
