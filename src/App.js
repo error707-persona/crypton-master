@@ -33,6 +33,7 @@ function App() {
   // });
   var a = true;
   // if (a) return <Login/>;
+  console.log(process.env);
   return (
     <Layout>
       <Navbar />
