@@ -1,4 +1,4 @@
-import json, { JsonWebTokenError } from "jsonwebtoken";
+const jwt = require("jsonwebtoken");
 
 // Generate jwt token
 const generateToken = (user) =>
