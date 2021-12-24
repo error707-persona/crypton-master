@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
+const userRouter = require("./routes/userRouter.js");
+
 dotenv.config();
 
 // Middleware
@@ -16,6 +18,7 @@ mongoose
   .catch((err) => console.log("Couldn't connect to Atlas: ", err.message));
 
 // Routes
+app.use("/api/users", userRouter);
 
 // Error Handler
 app.use((err, req, res) => {
