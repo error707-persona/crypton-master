@@ -38,10 +38,12 @@ const Login = () => {
             src="https://upload.wikimedia.org/wikipedia/commons/8/8b/Cryptocurrency_Logo.svg"
             style={{ width: "50px", height: "50px" }}
           />
+          {/* <Input  placeholder="Basic usage" /> */}
           <TextField
             name="email"
             label="Email"
             margin="normal"
+            
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -54,6 +56,15 @@ const Login = () => {
             name="password"
             type="password"
             label="Password"
+            onPaste={(e)=>{
+              alert("You can't paste password. Please type manually")
+              e.preventDefault()
+              return false;
+            }} onCopy={(e)=>{
+              alert("You can't copy password. Please type manually")
+              e.preventDefault()
+              return false;
+            }}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">

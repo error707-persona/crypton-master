@@ -1,6 +1,8 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { Col, Row, Typography } from 'antd';
+import * as SockJS from 'sockjs-client';
+// import {Loader} from "./Loader";
 
 const { Title } = Typography;
 
@@ -8,11 +10,26 @@ const LineChart = ({ coinHistory, currentPrice, coinName }) => {
   const coinPrice = [];
   const coinTimestamp = [];
 
-  for (let i = 0; i < coinHistory?.data?.history?.length; i += 1) {
-    coinPrice.push(coinHistory?.data?.history[i].price);
-    coinTimestamp.push(new Date(coinHistory?.data?.history[i].timestamp).toLocaleDateString());
-  }
+  const ws = new SockJS('http://localhost:7071/ws');
+const http = require('http');
+const sockjs = require('sockjs');
+const wss = sockjs.createServer();
+const server = http.createServer();
+wss.installHandlers(server, {prefix: '/ws'});
+server.listen(7071, '0.0.0.0');
 
+ws.on('data', client =>{
+    setInterval(()=>{
+    }, 1000);
+
+});
+
+// client.write(outbound);
+//   for (let i = 0; i < coinHistory?.data?.history?.length; i += 1) {
+//     coinPrice.push(coinHistory?.data?.history[i].price);
+//     coinTimestamp.push(new Date(coinHistory?.data?.history[i].timestamp).toLocaleDateString());
+//   }
+  
 //   for (let i = 0; i < coinHistory?.data?.history?.length; i += 1) {
     
 //   }

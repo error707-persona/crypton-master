@@ -32,7 +32,7 @@ function App() {
   // 	console.error(error);
   // });
   var a = true;
-  // if (a) return <Login/>;
+  if (a) return <Login/>;
   console.log(process.env);
   return (
     <Layout>
@@ -51,7 +51,7 @@ function App() {
               />
               <Route exact path="/crypto/:coinId" element={<CryptoDetails />} />
               <Route exact path="/news" element={<News />} />
-              <Route exact path="/login" element={<Login />} />
+              {/* <Route exact path="/login" element={<Login />} /> */}
             </Routes>
             <api />
             {/* </div> */}

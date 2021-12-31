@@ -23,7 +23,8 @@ const News = ({ simplified }) => {
   return isFetching ? (
     <Loader />
   ) : !(data && cryptoNews) ? (
-    <Title>Couldn't fetch News</Title>
+    // <Title>Couldn't fetch News</Title>
+    <Loader />
   ) : (
     <Row gutter={[24, 24]}>
       {!simplified && (
